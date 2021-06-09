@@ -1,0 +1,19 @@
+Por default, el comando python esta linkeado a la 3.6, la basada en Anaconda
+Pero si usas el comando py te levanta la 3.8
+
+Para el pip de cada versión lo haces de la siguiente manera:
+
+    3.6:
+    python -m pip <lo que vayas a hacer> <paquete>
+        tambien sirve pip <lo que vayas a hacer> <paquete> ya que por default se inicia el Conda
+    
+    3.8:
+    py -m pip <lo que vayas a hacer> <paquete>
+
+Para la ejecución de programas es igual:
+
+    3.6:
+    python <programa>.py
+    
+    3.8:
+    py <programa>.py

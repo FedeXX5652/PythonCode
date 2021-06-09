@@ -1,0 +1,39 @@
+{
+  "Profiles": [
+    {
+      "Name": "Default",
+      "Guid": "10af9207-7e67-4581-9d13-506cad5d53c1",
+      "Ports": [
+        [9802, 8101, 2],
+        [9802, 8101, 1]
+      ],
+      "SpeedControllers": [
+              {
+                "Type": "StaticSpeedController",
+                "Config": {
+                  "Speed": 100,
+                  "Trigger": {
+                    "Type": "AlwaysTrigger"
+                  }
+                }
+              }
+            ],
+            "Effects": [
+              {
+                "Type": "FullColorEffect",
+                "Config": {
+                  "Length": 15,
+                  "Color": [255, 0, 0],
+                  "TickInterval": 2,
+                  "Trigger": {
+                    "Type": "AlwaysTrigger"
+                  }
+                }
+              }
+            ]
+          }
+        ],
+  "ComputerStateProfiles": [],
+  "PortConfigs": [],
+  "SensorConfigs": []
+}

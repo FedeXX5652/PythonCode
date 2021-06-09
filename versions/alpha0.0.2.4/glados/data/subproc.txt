@@ -1,0 +1,4 @@
+C:\\Windows\\System32\\notepad.exe
+C:\Program Files\Google\Chrome\Application\chrome.exe
+C:\Users\PC\AppData\Local\Programs\Microsoft VS Code\Code.exe
+C:\Users\PC\AppData\Local\Microsoft\WindowsApps\Spotify.exe

@@ -1,0 +1,6 @@
+cd ..
+cd ..
+cd ..
+cd AppData\Roaming\Spotify
+Spotify.exe
+PAUSE

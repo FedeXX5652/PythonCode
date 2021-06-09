@@ -1,0 +1,4 @@
+notas
+chrome
+visualstudio
+spotify

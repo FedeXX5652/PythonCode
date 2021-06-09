@@ -1,0 +1,9 @@
+spotify
+twitch
+valorant
+terraria
+minecraft
+youtube
+chrome
+visual studio
+python

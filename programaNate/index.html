@@ -1,0 +1,13 @@
+<html>
+<script language="javascript">
+function RefreshImage(){
+document.pic0.src="plot.svg?a=" + String(Math.random()*99999999);
+setTimeout('RefreshImage()',50);
+}
+</script>
+<body onload="RefreshImage()" style="background-color:black; overflow: hidden;">
+<div style="width: 800px; height: 480px; background-image: url('oldmon.png'); background-size: 800px 480px;">
+    <img name="pic0" src="plot.svg" style="width: 960px; margin-top: -120px; margin-left: -100px; ">
+</div>
+</body>
+</html>
