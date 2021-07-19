@@ -1,4 +1,4 @@
-import tkinter
+import tkinter as Tk
 from tkinter import ttk
   
 root = Tk() 
