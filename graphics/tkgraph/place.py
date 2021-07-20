@@ -39,9 +39,6 @@ label = ttk.Label(text="haha tkinter goes brrrrrrr")
 label.place(x=160, y=120)
 
 #imagen en label/posicionamiento relativo
-imagen = tk.PhotoImage(file="png.png")
-label = ttk.Label(image=imagen)
-label.place(relx=0.25, rely=0.25, relwidth=0.5, relheight=0.5)
 
 #lista (listbox)
 lista = tk.Listbox()

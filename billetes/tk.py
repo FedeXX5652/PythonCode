@@ -1,80 +1,73 @@
-# import tkinter as tk
-# from tkinter import filedialog
-
-# from numpy import left_shift
-# import func
-
-# class Application(tk.Frame):
-#     def __init__(self, master=None):
-#         super().__init__(master)
-#         self.master = master
-#         self.pack()
-#         self.create_widgets()
-
-#     def create_widgets(self):
-
-#         self.label = tk.Label(self, text="Hello world")
-#         self.label.pack(side="top")
-
-#         self.entry = tk.Entry()
-#         self.entry.pack(side="top", expand=True, fill=tk.BOTH)
-
-#         self.hi_there = tk.Button(self)
-#         self.hi_there["text"] = "Seleccione un archivo"
-#         self.hi_there["command"] = self.say_hi
-#         self.hi_there.pack(side="right")
-
-#         self.start = tk.Button(self)
-#         self.start["text"] = "Seleccione un archivo"
-#         self.start["command"] = self.startFunc
-#         self.start.pack(side="left")
-
-#         self.quit = tk.Button(self, text="QUIT", fg="red",
-#                               command=self.master.destroy)
-#         self.quit.pack(side="bottom", after=self.start)
-
-#     def say_hi(self):
-#         file = filedialog.askopenfile(title="Seleccione un archivo")
-   
-#     def startFunc(self):
-#         print("funcion acá")
-
-# root = tk.Tk()
-# app = Application(master=root)
-# app.mainloop()
-
 from tkinter import *
-from tkinter import filedialog
+from tkinter import filedialog, messagebox
+import func
   
 root = Tk()
-root.geometry("600x250")
+root.geometry("350x200")
 root.title(" Converter ")
-  
-def selFile(File):
-    root.path = filedialog.askopenfilename(title="Seleccione un archivo")
-    my_string_var.set(root.path)
 
-def start(path):
+frame = Frame(root)
+frame.pack(side=TOP)
+
+midframe = Frame(root)
+midframe.pack()
+
+
+bottomframe = Frame(root)
+bottomframe.pack( side = BOTTOM )
+
+  
+def selFile():
+    root.path = filedialog.askopenfilename(title="Seleccione un archivo")
+    File.delete("1.0", "end-1c")
+    File.insert(END, root.path)
+
+def start(path, amount):
     print(path)
+    try:
+        f = open(str(path), "r")
+    except:
+        messagebox.showerror(title="Error", message="Error al abrir el archivo")
+    lines = f.readlines()
+    l = []
+
+    for line in lines:
+        if line.strip() != "" and line.strip().isnumeric():
+            l.append(int(line.strip(),  base=10))
+    
+    try:
+        func.func(l, amount)
+        messagebox.showinfo(title="Archivo creado", message="El resulrado fue pueso en el archivo"+"\nCOMBINACIÓN_BILLETES.txt")
+    except:
+        messagebox.showerror(title="Error", message="Error al operar")
+    
+
 
       
-l = Label(text = "Armador de pilones de 10000 v1.0").pack()
+l = Label(frame, text = "Armador de pilones de ").pack(side=LEFT)
 
-my_string_var = StringVar()
+Enter = Entry(frame, 
+              width = 10, 
+              bg = "light green")
 
-my_string_var.set("File Path")
+Enter.pack(side=LEFT)
 
-File = Label(root,
-                bg = "light yellow", textvariable = my_string_var).pack()
+l2 = Label(frame, text = " v1.0").pack(side=LEFT)
+
+File = Text(midframe, height = 5, 
+              width = 35, 
+              bg = "light cyan")
+
+File.pack(side=RIGHT)
   
-Display = Button(root, height = 2,
+Display = Button(bottomframe, height = 2,
                  width = 20, 
                  text ="Seleccione un archivo",
-                 command = lambda:selFile(File)).pack()
+                 command = lambda:selFile()).pack(side=RIGHT, padx=5, pady=5)
 
-Display2 = Button(root, height = 2,
+Display2 = Button(bottomframe, height = 2,
                  width = 20, 
                  text ="Start",
-                 command = lambda:start(my_string_var.get())).pack()
+                 command = lambda:start(File.get("1.0", "end-1c"), int(Enter.get()))).pack(side=LEFT, padx=5, pady=5)
   
 root.mainloop()

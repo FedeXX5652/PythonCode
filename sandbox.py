@@ -1,40 +1,84 @@
-import tkinter as tk
-from tkinter import ttk
+def func2(arr):
+    value = 10000
+    arr2=arr.copy()
+    t=r=index=0
+    used=[]
 
-root = tk.Tk()
+    for x in arr2:
+        if t<=value:
+            t+=x
+            used.append(x)
+        elif t>value:
+            r=t-value
+            t=t-r
+        
+            print("Total: "+str(t))
+            print("\n")
+            print("Resto: "+str(r))
+            print("\n")
+            print("Usados: "+str(used))
+            print("\n")
+            print("-----------------------------")
 
-# Base size
-normal_width = 1920
-normal_height = 1080
+            fill(str(t), str(r), str(used))
 
-# Get screen size
-screen_width = root.winfo_screenwidth()
-screen_height = root.winfo_screenheight()
+            index+=len(used)
+            arr2.append(r)
+            used.clear()
+            t=0
 
-# Get percentage of screen size from Base size
-percentage_width = screen_width / (normal_width / 100)
-percentage_height = screen_height / (normal_height / 100)
+    # print("Index: "+str(index)+" Len final: "+str(len(arr2)))
+    # print("\n")
+    # print("Lista final: "+str(arr2))
+    # print("\n")
+    return(arr2[index::])
 
-# Make a scaling factor, this is bases on average percentage from
-# width and height.
-scale_factor = ((percentage_width + percentage_height) / 2) / 100
+def func(arr):
+    
+    # arr = list(np.random.randint(500, high = 1001, size = 50))
+    # print("\n")
+    # print("Valores iniciales: "+str(arr))
+    # print("\n")
+    # print("-----------------------------")
 
-# Set the fontsize based on scale_factor,
-# if the fontsize is less than minimum_size
-# it is set to the minimum size
-fontsize = int(14 * scale_factor)
-minimum_size = 8
-if fontsize < minimum_size:
-    fontsize = minimum_size
+    f= open("COMBINACIÓN_BILLETES.txt","a")
+    f.truncate(0)
+    f.close()
 
-# Create a style and configure for ttk.Button widget
-default_style = ttk.Style()
-default_style.configure('New.TButton', font=("Helvetica", fontsize))
+    now = func2(arr)
+    last = []
+    while last != now:
+        last = now
+        now = func2(now)
 
-frame = ttk.Frame(root)
-button = ttk.Button(frame, text="Test", style='New.TButton')
+    res = 0
+    if last == now:
+        print("No usados: "+str(now))
+        print("\n")
+        print("Restos: "+str(now[::]))
+        print("\n")
+        for x in now:
+            res +=x
+        print("Suma de restos: "+str(res))
+        f= open("COMBINACIÓN_BILLETES.txt","a")
+        f.write("No usados: "+str(now)+"\n")
+        f.write("Suma de no usados: "+str(res))
+        f.close()
 
-frame.grid(column=0, row=0)
-button.grid(column=0, row=0)
 
-root.mainloop()
+def fill(t, r, used):
+    f= open("COMBINACIÓN_BILLETES.txt","a")
+
+    f.write("Fajo: "+t+"\n")
+    f.write("Resto: "+r+"\n")
+    f.write("Usados: "+used+"\n")
+    f.write("---------------------------------------------"+"\n")
+
+    f.close()
+
+#------------------------------------------------------------------------------------------------------------
+import numpy as np
+
+arr = list(np.random.randint(500, 1000, 30))
+
+func(arr)

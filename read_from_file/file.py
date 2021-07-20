@@ -1,4 +1,4 @@
-f = open("input.txt", "r")
+f = open("c:/Users/PC/Documents/PythonCode/read_from_file/input.txt", "r")
 
 lines = f.readlines() 
 count = 0
