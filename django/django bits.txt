@@ -1,0 +1,68 @@
+Model Template View   Estructura del Framework
+Bases de datos soportadas oficialmente:
+    SQLite3
+    PostgreSQL
+    MySQL
+    Oracle
+    
+Bases de datos de terceros:
+    SQL server
+    SAP SQL
+    DB2
+    Firebird
+
+Crear proyecto:
+    CMD con path en la carpeta del proyecto
+    comando --> django-admin startproject (nombre del proyecto)
+
+Comandos de django-admin:
+    check
+    compilemessages
+    createcachetable
+    dbshell
+    diffsettings
+    dumpdata
+    flush
+    inspectdb
+    loaddata
+    makemessages
+    makemigrations
+    migrate
+    runserver
+    sendtestemail
+    shell
+    showmigrations
+    sqlflush
+    sqlmigrate
+    sqlsequencereset
+    squashmigrations
+    startapp
+    startproject
+    test
+    testserver
+
+Todo lo que el archivo manage.py dentro del proyecto puede hacer:
+    Para acceder se usa el comando manage.py help
+
+    Available subcommands:
+
+[auth]
+    changepassword
+    createsuperuser
+
+[contenttypes]
+    remove_stale_contenttypes
+
+[django]
+(lo mismo que el django-admin)
+
+[sessions]
+    clearsessions
+
+[staticfiles]
+    collectstatic
+    findstatic
+    runserver
+
+Con el comando manage.py migrate crea la data base de SQLite3
+Con el comando manage.py runserver inicia el servidor

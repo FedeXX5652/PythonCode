@@ -1,0 +1,11 @@
+Para pasar entre versiones de python tenes que usar este comando:
+
+py -3   La versión mas nueva de la 3.x
+
+py -3.6 La versión mas nueva de la 3.6.x
+
+py -3.8 La versión mas nueva de la 3.8.x
+
+Para cualquier comando adicional (como el PIP) tenes que usar este comando:
+
+py -(versión) -m (comando)
