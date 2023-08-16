@@ -43,27 +43,21 @@ def row_factory(num: int):
         row[-(i + 1)] = num_list[-(i + 1)]
     
     row = (row+[1])
-    print(row, len(row))
     return row
 
 def set_level(level: int):
-    # level goes from 0 to 9
-    # must add 1 to level to get correct index and set to binary and set the end to 1
-    print("set level: ")
     return row_factory(level)
 
 
 schools = ["abjuration", "conjuration", "divination", "enchantment", "evocation", "illusion", "necromancy", "transmutation"]
 def set_school(school: str):
     index = schools.index(school)
-    print("set school:")
     return row_factory(index)
 
 
 dmg_types = ["acid", "bludgeoning", "cold", "damage", "extra", "fire", "force", "lightning", "necrotic", "nonmagical", "piercing", "poison", "psychic", "radiant", "slashing", "thunder"]
 def set_dmg_type(dmg_type: str):
     index = dmg_types.index(dmg_type)
-    print("set dmg type:")
     return row_factory(index)
 
 def pad(num: str, ns: int = n):
@@ -77,7 +71,6 @@ area_types = {"circle":pad("1111"), "cone/sphere": pad("1011"), "cone":pad("1001
                   "single target/wall":pad("11111"), "single target":pad("10101"), "sphere/cylinder":pad("10011"),
                   "sphere":pad("10001"), "square":pad("1101"), "wall":pad("100001")}
 def set_area_type(area_type: str):
-    print("set area type: ", [int(x) for x in area_types[area_type]])
     return [int(x) for x in area_types[area_type]]
 
 ranges = ["10ft radius", "100ft line", "15ft cone", "15ft cube",
@@ -89,7 +82,6 @@ ranges = ["10ft radius", "100ft line", "15ft cone", "15ft cube",
             "special", "touch"]
 def set_range(range_: str):
     index = ranges.index(range_)
-    print("set range:")
     return row_factory(index)
 
 def props_to_mat(level:int=-1, school:str="", dmg_type: str="", area_type: str="", range_: str=""):
