@@ -2,8 +2,9 @@ import operator
 import random
 import matplotlib.pyplot as plt
 import networkx as nx
+import os
 
-plt.rcParams["figure.figsize"] = [7, 7]
+plt.rcParams["figure.figsize"] = [5, 5]
 plt.rcParams["figure.autolayout"] = True
 
 G = nx.Graph()
@@ -93,22 +94,24 @@ def props_to_mat(level:int=-1, school:str="", dmg_type: str="", area_type: str="
     mat[4] = set_range(range_) if range_ != "" else [0 for x in range(n+1)]
     return mat
 
-level = random.randint(0,9)
-school = random.choice(schools)
-dmg_type = random.choice(dmg_types)
-area_type = random.choice(list(area_types.keys()))
-range_ = random.choice(ranges)
+def draw(level, school, dmg_type, area_type, range_, radius, graph_type):
+    graph(G, props_to_mat(level=level, school=school, dmg_type=dmg_type, area_type=area_type, range_=range_))
 
-graph(G, props_to_mat(level=level, school=school, dmg_type=dmg_type, area_type=area_type, range_=range_))
-
-plt.figure()
-edge_color = [edge_color_func(n1, n2) for n1, n2 in G.edges()]
-pos = nx.circular_layout(G)
-pos = {n: pos[n] for n in sorted(G.nodes(), key=lambda n: n)}
-nx.draw(G, node_color="black", edge_color=edge_color, width=1, with_labels=True, font_color="white", pos=pos, arrows=True, connectionstyle="arc3,rad=-0.15")
-plt.text(0.5, -0.11, f"LEVEL: {level}", ha="center", fontsize=12, bbox=dict(facecolor='white', edgecolor='black', alpha=0.7))
-plt.text(0.5, -0.22, f"SCHOOL: {school}", ha="center", fontsize=12, bbox=dict(facecolor='white', edgecolor='blue', alpha=0.7))
-plt.text(0.5, -0.33, f"DAMAGE TYPE: {dmg_type}", ha="center", fontsize=12, bbox=dict(facecolor='white', edgecolor='green', alpha=0.7))
-plt.text(0.5, -0.44, f"AREA TYPE: {area_type}", ha="center", fontsize=12, bbox=dict(facecolor='white', edgecolor='red', alpha=0.7))
-plt.text(0.5, -0.55, f"RANGE: {range_}", ha="center", fontsize=12, bbox=dict(facecolor='white', edgecolor='yellow', alpha=0.7))
-plt.show()
+    plt.figure()
+    plt.axis("off")
+    edge_color = [edge_color_func(n1, n2) for n1, n2 in G.edges()]
+    if graph_type == "circular":
+        pos = nx.circular_layout(G)
+    elif graph_type == "kamada_kawai":
+        pos = nx.kamada_kawai_layout(G)
+    elif graph_type == "random":
+        pos = nx.random_layout(G)
+    elif graph_type == "shell":
+        pos = nx.shell_layout(G)
+    pos = {n: pos[n] for n in sorted(G.nodes(), key=lambda n: n)}
+    nx.draw(G, node_color="black", edge_color=edge_color, width=1, with_labels=True, font_color="white", pos=pos, arrows=True, connectionstyle=f"arc3,rad={radius}")
+    MODULE_DIR = os.path.dirname(os.path.abspath(__file__))
+    if os.path.exists(os.path.join(MODULE_DIR, "fig.png")):
+        os.remove(os.path.join(MODULE_DIR, "fig.png"))
+    plt.savefig("fig.png")
+    plt.close()
