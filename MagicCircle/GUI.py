@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import *
+
 import draw
 import os
 
@@ -8,7 +10,7 @@ MODULE_DIR = os.path.dirname(os.path.abspath(__file__))
 root = tk.Tk()
 root.minsize(400, 500)
 
-draw.draw(-1, "", "", "", "", 0, "circular")
+draw.draw(-1, "", "", "", "", 0, "circular", True, True, 300)
 
 # Create the labels for each field.
 level_label = ttk.Label(root, text="Level:")
@@ -19,6 +21,22 @@ range_label = ttk.Label(root, text="Range:")
 radius_label = ttk.Label(root, text="Line Radius:")
 graph_label = ttk.Label(root, text="Graph Type:")
 image = tk.PhotoImage(file=os.path.join(MODULE_DIR, "fig.png"))
+node_label:Checkbutton = ttk.Checkbutton(root, text="Node Label")
+edge_color:Checkbutton = ttk.Checkbutton(root, text="Edge Color")
+node_size_label = ttk.Label(root, text="Node Size:")
+
+# set checkboxs to selected by default
+node_label.selection_clear()
+edge_color.selection_clear()
+
+lbls = [level_label, school_label, dmg_type_label,
+                  area_type_label, range_label]
+for lbl in lbls:
+    
+    # add ■ to the left of the label in red color
+    c = ["black", "blue", "green", "red", "#FDDA0D", "orange", "purple", "pink"].__getitem__(lbls.index(lbl))
+    lbl.config(foreground=c, text="■ " + lbl.cget("text"))
+
 
 schools = ["abjuration", "conjuration", "divination", "enchantment", "evocation", "illusion", "necromancy", "transmutation"]
 
@@ -39,7 +57,7 @@ ranges = ["10ft radius", "100ft line", "15ft cone", "15ft cube",
             "60ft point", "90ft point", "self", "sight",
             "special", "touch"]
 
-figures = ["circular","kamada_kawai","random","shell"]
+figures = ["circular","kamada_kawai","random","shell","planar","spring"]
 
 # Create the entry boxes for each field and pack them and pin to left side
 level_entry = ttk.Entry(root)
@@ -49,6 +67,7 @@ area_type_entry = ttk.Combobox(root, values=area_types)
 range_entry = ttk.Combobox(root, values=ranges)
 radius_entry = ttk.Entry(root)
 graph_entry = ttk.Combobox(root, values=figures)
+node_size_entry = ttk.Entry(root)
 
 # Create the buttons to submit and clear the form.
 submit_button = ttk.Button(root, text="Submit")
@@ -60,6 +79,8 @@ clear_button = ttk.Button(root, text="Clear", command=lambda: [
     range_entry.delete(0, tk.END),
     radius_entry.delete(0, tk.END),
     graph_entry.delete(0, tk.END),
+    node_label.selection_clear(),
+    edge_color.selection_clear()
 ])
 
 def validate_level(widget):
@@ -101,7 +122,8 @@ def submit_button_clicked():
     graph = graph_entry.get()
 
     # Draw the spell effect.
-    draw.draw(level, school, dmg_type, area_type, range, radius, graph)
+    draw.draw(level, school, dmg_type, area_type, range, radius, graph, node_label.instate(["selected"]), edge_color.instate(["selected"]),
+              float(node_size_entry.get())*100 if node_size_entry.get() != "" else 300)
 
     image.configure(file=os.path.join(MODULE_DIR, "fig.png"))
 
@@ -131,6 +153,10 @@ radius_label.pack()
 radius_entry.pack()
 graph_label.pack()
 graph_entry.pack()
+node_label.pack()
+edge_color.pack()
+node_size_label.pack()
+node_size_entry.pack()
 submit_button.pack()
 clear_button.pack()
 

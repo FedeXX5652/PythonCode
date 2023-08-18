@@ -4,12 +4,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import os
 
-plt.rcParams["figure.figsize"] = [5, 5]
-plt.rcParams["figure.autolayout"] = True
-
-G = nx.Graph()
 n = 11
-G.add_nodes_from([x+1 for x in range(n)])
 
 def add_edges(G: nx.Graph, conn: int):
     for i in range(n):
@@ -94,12 +89,22 @@ def props_to_mat(level:int=-1, school:str="", dmg_type: str="", area_type: str="
     mat[4] = set_range(range_) if range_ != "" else [0 for x in range(n+1)]
     return mat
 
-def draw(level, school, dmg_type, area_type, range_, radius, graph_type):
+def draw(level, school, dmg_type, area_type, range_, radius, graph_type, node_label, edge_color, node_size):
+
+    plt.rcParams["figure.figsize"] = [5, 5]
+    plt.rcParams["figure.autolayout"] = True
+
+    G = nx.Graph()
+    G.add_nodes_from([x+1 for x in range(n)])
+
     graph(G, props_to_mat(level=level, school=school, dmg_type=dmg_type, area_type=area_type, range_=range_))
 
     plt.figure()
     plt.axis("off")
-    edge_color = [edge_color_func(n1, n2) for n1, n2 in G.edges()]
+    if edge_color:
+        edge_color = [edge_color_func(n1, n2) for n1, n2 in G.edges()]
+    else:
+        edge_color = ["black" for _ in G.edges()]
     if graph_type == "circular":
         pos = nx.circular_layout(G)
     elif graph_type == "kamada_kawai":
@@ -108,8 +113,15 @@ def draw(level, school, dmg_type, area_type, range_, radius, graph_type):
         pos = nx.random_layout(G)
     elif graph_type == "shell":
         pos = nx.shell_layout(G)
+    elif graph_type == "planar":
+        pos = nx.planar_layout(G)
+    elif graph_type == "spring":
+        pos = nx.spring_layout(G, k=1)
+    else:
+        pos = nx.circular_layout(G)
     pos = {n: pos[n] for n in sorted(G.nodes(), key=lambda n: n)}
-    nx.draw(G, node_color="black", edge_color=edge_color, width=1, with_labels=True, font_color="white", pos=pos, arrows=True, connectionstyle=f"arc3,rad={radius}")
+    nx.draw(G, node_color="black", edge_color=edge_color, width=1, with_labels=node_label, font_color="white", pos=pos, arrows=True, connectionstyle=f"arc3,rad={radius}",
+            node_size=node_size)
     MODULE_DIR = os.path.dirname(os.path.abspath(__file__))
     if os.path.exists(os.path.join(MODULE_DIR, "fig.png")):
         os.remove(os.path.join(MODULE_DIR, "fig.png"))
