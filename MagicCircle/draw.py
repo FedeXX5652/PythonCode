@@ -6,6 +6,30 @@ import os
 
 n = 0
 
+schools = ["abjuration", "conjuration", "divination", "enchantment", "evocation", "illusion", "necromancy", "transmutation"]
+
+dmg_types = ["acid", "bludgeoning", "cold", "damage", "extra", "fire", "force", "lightning", "necrotic", "nonmagical", "piercing", "poison", "psychic", "radiant", "slashing", "thunder"]
+
+def pad(num: str, ns: int = n):
+    pad = "0" * (ns - len(num))
+    return pad + num
+
+area_types = {"circle":pad("1111"), "cone/sphere": pad("1011"), "cone":pad("1001"),
+                  "cube":pad("1"), "cylinder":pad("100011"), "line":pad("11"), "multiple targets/sphere":pad("111"),
+                  "multiple targets":pad("101"), "none":pad("100101"), "single target/cone": pad("11011"),
+                  "single target/cube":pad("10111"), "single target/multiple targets":pad("11001"), "single target/sphere":pad("11101"),
+                  "single target/wall":pad("11111"), "single target":pad("10101"), "sphere/cylinder":pad("10011"),
+                  "sphere":pad("10001"), "square":pad("1101"), "wall":pad("100001")}
+
+ranges = ["10ft radius", "100ft line", "15ft cone", "15ft cube",
+            "15ft radius", "30ft cone", "30ft line", "30ft radius",
+            "5ft radius", "60ft cone", "60ft line", "1mi point",
+            "10ft point", "1000ft point", "120ft point", "150ft point",
+            "30ft point", "300ft point", "5ft point", "500ft point",
+            "60ft point", "90ft point", "self", "sight",
+            "special", "touch"]
+
+
 def add_edges(G: nx.Graph, conn: int):
     for i in range(n):
         G.add_edge(i+1, (i+conn)%n+1)
@@ -45,37 +69,20 @@ def set_level(level: int):
     return row_factory(level)
 
 
-schools = ["abjuration", "conjuration", "divination", "enchantment", "evocation", "illusion", "necromancy", "transmutation"]
 def set_school(school: str):
     index = schools.index(school)
     return row_factory(index)
 
 
-dmg_types = ["acid", "bludgeoning", "cold", "damage", "extra", "fire", "force", "lightning", "necrotic", "nonmagical", "piercing", "poison", "psychic", "radiant", "slashing", "thunder"]
 def set_dmg_type(dmg_type: str):
     index = dmg_types.index(dmg_type)
     return row_factory(index)
 
-def pad(num: str, ns: int = n):
-    pad = "0" * (ns - len(num))
-    return pad + num
 
-area_types = {"circle":pad("1111"), "cone/sphere": pad("1011"), "cone":pad("1001"),
-                  "cube":pad("1"), "cylinder":pad("100011"), "line":pad("11"), "multiple targets/sphere":pad("111"),
-                  "multiple targets":pad("101"), "none":pad("100101"), "single target/cone": pad("11011"),
-                  "single target/cube":pad("10111"), "single target/multiple targets":pad("11001"), "single target/sphere":pad("11101"),
-                  "single target/wall":pad("11111"), "single target":pad("10101"), "sphere/cylinder":pad("10011"),
-                  "sphere":pad("10001"), "square":pad("1101"), "wall":pad("100001")}
 def set_area_type(area_type: str):
     return [int(x) for x in area_types[area_type]]
 
-ranges = ["10ft radius", "100ft line", "15ft cone", "15ft cube",
-            "15ft radius", "30ft cone", "30ft line", "30ft radius",
-            "5ft radius", "60ft cone", "60ft line", "1mi point",
-            "10ft point", "1000ft point", "120ft point", "150ft point",
-            "30ft point", "300ft point", "5ft point", "500ft point",
-            "60ft point", "90ft point", "self", "sight",
-            "special", "touch"]
+
 def set_range(range_: str):
     index = ranges.index(range_)
     return row_factory(index)
