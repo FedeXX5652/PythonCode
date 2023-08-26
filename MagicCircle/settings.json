@@ -1,0 +1,456 @@
+{
+    "max_lvl": 10,
+    "forms": [
+        {
+            "name": "USUARIO",
+            "type": "Poción",
+            "cost": "1",
+            "description": "Afecta al lanzador."
+        },
+        {
+            "name": "TOQUE",
+            "type": "Ataque Melee (1m)",
+            "cost": "1",
+            "description": "Afecta a un solo personaje objetivo a 1 m del lanzador."
+        },
+        {
+            "name": "RAYO",
+            "type": "Ataque Rango (100m)",
+            "cost": "2",
+            "description": "Afecta a un solo personaje objetivo dentro de los 100 m del lanzador."
+        },
+        {
+            "name": "OBJETIVO",
+            "type": "Directo",
+            "cost": "4",
+            "description": "Afecta a un solo objetivo dentro de los 50 m del lanzador. Si el Efecto hace daño al enemigo en cualquier forma, pierde el parámetro de Directo."
+        },
+        {
+            "name": "CAPA",
+            "type": "Mantenimiento",
+            "cost": "4",
+            "description": "Afecta a todos los objetivos dentro de 1 m al final del turno del lanzador."
+        },
+        {
+            "name": "LAZO",
+            "type": "",
+            "cost": "4 + Z",
+            "description": "El personaje lanza un hechizo en un arma dentro de 1 m, imbuyéndolo mágicamente con el efecto del hechizo. Cuando esta arma golpea a un personaje con un ataque, el personaje sufre los efectos del hechizo. Estos efectos solo se aplican para la primera cantidad Z de ataques. Nota: esta forma de hechizo no se beneficia de Sobrecarga, y cualquier daño de hechizo añadido al arma tiene un límite de 1d6."
+        },
+        {
+            "name": "PULSO",
+            "type": "Ataque R, AoE (1 + Z m, esfera)",
+            "cost": "4 + Z",
+            "description": "Afecta al lanzador y a todos los objetivos dentro de 1 + Z metros del lanzador."
+        },
+        {
+            "name": "BOLA",
+            "type": "Ataque R, AoE (1 + Z m, esfera)",
+            "cost": "5 + Z",
+            "description": "Afecta a todos los objetivos dentro de 1 + Z metros del punto objetivo dentro de los 100 m del lanzador."
+        },
+        {
+            "name": "HAZ",
+            "type": "Ataque R, AoE (10 + 10xZ m, rayo)",
+            "cost": "5 + Z",
+            "description": "Afecta a todos los objetivos dentro de una línea de 1 m de ancho a 10 + (10xZ) metros en la dirección elegida por el lanzador."
+        },
+        {
+            "name": "CONO",
+            "type": "Ataque R, AoE (3 + Z m, cono)",
+            "cost": "5 + Z",
+            "description": "Afecta a todos los objetivos dentro de un cono de 3 + Z metros (un cono con una longitud de 3 + Z metros y el mismo ancho)."
+        },
+        {
+            "name": "RUNA",
+            "type": "Costo: 5 + Z",
+            "cost": "",
+            "description": "Crea una runa mágica en la superficie del objetivo en un radio de 1 metro. Después de un retraso de 1 ronda, la runa se vuelve apenas visible (-2 a cualquier prueba basada en la visión para detectarla). El lanzador elige una o más condiciones sobre las que detona la runa. La runa persiste indefinidamente.\n\n• Proximidad: La runa detona cada vez que un personaje se acerca a cierta distancia (elegida por el lanzador).\n• Tiempo: la runa detona después de un tiempo determinado.\n• Manual: el lanzador puede detonar la runa manualmente desde cualquier distancia usando una acción.\n\nCuando la runa detona, afecta a todos los objetivos dentro de 1 + Z metros. Esto cuenta como un ataque de área de efecto y se puede evadir, pero solo si un personaje es consciente de la runa."
+        },
+        {
+            "name": "TORMENTA",
+            "type": "Encantamiento, Mantenimiento, Ataque R, AoE (1 + (3xZ), esfera), (pierde el atributo de sobrecarga)",
+            "cost": "5 + Z",
+            "description": "Afecta a todos los objetivos dentro de 1 + (3 x Z) metros del punto objetivo dentro de los 100 m. Deja atrás una zona persistente en esta área durante 1 ronda que causa el mismo efecto a cualquier personaje que la atraviese (o termine su turno en ella si comenzó allí). Mantener el hechizo no permite que el lanzador mueva la tormenta, simplemente refresca el efecto y la duración."
+        },
+        {
+            "name": "CADENA",
+            "type": "Ataque R (50m)",
+            "cost": "5 + (Z * 2)",
+            "description": "Afecta a un solo objetivo dentro de los 50 m del lanzador. Luego afecta hasta Z objetivos adicionales elegidos por el lanzador, cada uno dentro de los 10 m del objetivo anterior (use la primera tirada). Si un objetivo evade este ataque, el hechizo salta ese objetivo y pasa al siguiente objetivo."
+        },
+        {
+            "name": "MURO",
+            "type": "Encantamiento, Mantenimiento, Ataque R, AoE (Z, muro)",
+            "cost": "5 + Z",
+            "description": "Crea un muro de 1 m de ancho y 1 + (2 x Z) metros de largo en 100 m, con una orientación elegida por el lanzador. Afecta a todos los objetivos dentro del área del muro. Deja atrás una zona persistente en esta área durante 1 ronda que causa el mismo efecto a cualquier personaje que la atraviese (o termine su turno en ella si comenzó allí). Mantener el hechizo no permite que el lanzador mueva la pared, simplemente refresca el efecto y la duración."
+        }
+    ],
+    "effects": {
+        "alteracion": [
+            {
+                "Efecto": "Abrir",
+                "Regla": "-",
+                "Parámetro": "3xNH",
+                "Coste": ""
+            },
+            {
+                "Efecto": "Armadura",
+                "Regla": "Mantenimiento, Poción, Guardia (Armadura)",
+                "Parámetro": "5xNH",
+                "Coste": ""
+            },
+            {
+                "Efecto": "Caída Lenta",
+                "Regla": "Mantenimiento, Reacción, Poción",
+                "Parámetro": "NH",
+                "Coste": ""
+            },
+            {
+                "Efecto": "Caminar Sobre el Agua",
+                "Regla": "Poción",
+                "Parámetro": "NH",
+                "Coste": ""
+            },
+            {
+                "Efecto": "Carga",
+                "Regla": "Mantenimiento, Toxina",
+                "Parámetro": "3xNH",
+                "Coste": ""
+            },
+            {
+                "Efecto": "Cerrar",
+                "Regla": "-",
+                "Parámetro": "3xNH",
+                "Coste": ""
+            },
+            {
+                "Efecto": "Custodia",
+                "Regla": "Reacción",
+                "Parámetro": "2xNH",
+                "Coste": ""
+            },
+            {
+                "Efecto": "Escudo",
+                "Regla": "Mantenimiento, Poción, Guardia (Salud)",
+                "Parámetro": "3xNH",
+                "Coste": ""
+            },
+            {
+                "Efecto": "Levitar",
+                "Regla": "Mantenimiento, Poción",
+                "Parámetro": "6xNH",
+                "Coste": ""
+            },
+            {
+                "Efecto": "Pluma",
+                "Regla": "Mantenimiento, Poción",
+                "Parámetro": "10",
+                "Coste": ""
+            },
+            {
+                "Efecto": "Unir/Reparar",
+                "Regla": "Mantenimiento",
+                "Parámetro": "2xNH",
+                "Coste": ""
+            },
+            {
+                "Efecto": "Respirar Bajo el Agua",
+                "Regla": "Poción",
+                "Parámetro": "NH",
+                "Coste": ""
+            },
+            {
+                "Efecto": "Salto",
+                "Regla": "Poción",
+                "Parámetro": "NH",
+                "Coste": ""
+            },
+            {
+                "Efecto": "Telekinesis",
+                "Regla": "Mantenimiento, Poción",
+                "Parámetro": "3xNH",
+                "Coste": ""
+            }
+        ],
+        "conjuracion": [],
+        "destruccion": [
+            {
+                "Efecto": "Desintegrar Arma",
+                "Regla": "En lugar de causar daño, este ataque reduce la armadura del objetivo por NH.",
+                "Parámetro": "-",
+                "Coste": "4xNH"
+            },
+            {
+                "Efecto": "Desintegrar Armadura",
+                "Regla": "En lugar de causar daño, este ataque reduce el daño del arma del objetivo por NH.",
+                "Parámetro": "-",
+                "Coste": "4xNH"
+            },
+            {
+                "Efecto": "Electricidad",
+                "Regla": "El objetivo afectado recibe (dado) daño de electricidad.",
+                "Parámetro": "Sobrecarga (Daño)",
+                "Coste": "2xNH"
+            },
+            {
+                "Efecto": "Fuego",
+                "Regla": "El objetivo afectado recibe (dado) daño de fuego.",
+                "Parámetro": "Sobrecarga (Daño)",
+                "Coste": "2xNH"
+            },
+            {
+                "Efecto": "Hielo",
+                "Regla": "El objetivo afectado recibe (dado) daño de hielo.",
+                "Parámetro": "Sobrecarga (Daño)",
+                "Coste": "2xNH"
+            },
+            {
+                "Efecto": "Veneno",
+                "Regla": "El objetivo afectado recibe (dado) daño de veneno.",
+                "Parámetro": "Sobrecarga (Daño)",
+                "Coste": "2xNH"
+            }
+        ],
+        "ilusion": [
+            {
+                "Efecto": "Amortiguar",
+                "Regla": "Las pruebas basadas en la audición para detectar al objetivo se realizan con una penalización de -NH por un minuto.",
+                "Parámetro": "Mantenimiento, Poción",
+                "Coste": "3xNH"
+            },
+            {
+                "Efecto": "Calmar",
+                "Regla": "El objetivo es calmado por 3xNH rondas.",
+                "Parámetro": "Mantenimiento, Directo, Toxina",
+                "Coste": "3xNH"
+            },
+            {
+                "Efecto": "Camaleón",
+                "Regla": "Las pruebas basadas en la vista para detectar al objetivo se realizan con una penalización de -NH por un minuto.",
+                "Parámetro": "Mantenimiento, Poción",
+                "Coste": "3xNH"
+            },
+            {
+                "Efecto": "Cegar",
+                "Regla": "El objetivo es cegado por NH rondas",
+                "Parámetro": "Mantenimiento, Directo, Toxina",
+                "Coste": "3xNH"
+            },
+            {
+                "Efecto": "Coraje",
+                "Regla": "Durante un minuto, todos los objetivos dispuestos reciben una bonificación NH a cualquier prueba de Miedo. Los personajes bajo los efectos del miedo pueden hacer una prueba de Voluntad con la misma bonificación para salir de los efectos.",
+                "Parámetro": "Mantenimiento",
+                "Coste": "2xNH"
+            },
+            {
+                "Efecto": "Encantar",
+                "Regla": "Por un minuto, el objetivo se vuelve más receptivo a otros. Personajes que traten de persuadirlo o engañarlo reciben un bono de NH a tu tirada.",
+                "Parámetro": "Directo",
+                "Coste": "2xNH"
+            },
+            {
+                "Efecto": "Frenesí",
+                "Regla": "El objetivo debe hacer una prueba de Voluntad con un modificador NH o entrar en frenesí.",
+                "Parámetro": "Directo, Toxina",
+                "Coste": "4xNH"
+            },
+            {
+                "Efecto": "Horror",
+                "Regla": "El objetivo debe hacer una prueba de Voluntad con una penalización de -NH. Si falla, el objetivo debe huir en pánico del mago, y no puede realizar ningún ataque contra este. De no poder huir, se inmoviliza por el terror",
+                "Parámetro": "Directo, Toxina",
+                "Coste": "7xNH"
+            },
+            {
+                "Efecto": "Invisibilidad",
+                "Regla": "El objetivo afectado se vuelve invisible durante 1 ronda. Pierden esta condición si atacan o lanzan otro hechizo durante este tiempo.",
+                "Parámetro": "Mantenimiento, Poción.",
+                "Coste": "12"
+            },
+            {
+                "Efecto": "Luz",
+                "Regla": "Crea una luz que orbita alrededor del objetivo e ilumina un área de 10xNH metros por 1 minuto.",
+                "Parámetro": "Mantenimiento, Directo, Poción",
+                "Coste": "NH"
+            },
+            {
+                "Efecto": "Paralizar",
+                "Regla": "El objetivo debe realizar una tirada de Voluntad con un penalizador de -FH o ser paralizado por un minuto. Si pasa, pierde un PA.",
+                "Parámetro": "Directo, Mantenimiento, Toxina",
+                "Coste": "8xNH"
+            },
+            {
+                "Efecto": "Santuario",
+                "Regla": "El objetivo recibe 2+NH menos daño de los ataques durante 1 ronda. También pueden moverse 1 metro más de lo normal para evitar ataques de área de efecto en una prueba de Agilidad exitosa.",
+                "Parámetro": "Mantenimiento, Poción",
+                "Coste": "7xNH"
+            },
+            {
+                "Efecto": "Silencio",
+                "Regla": "El objetivo debe realizar una tirada de Voluntad con un penalizador de NH o ser silenciado por un minuto",
+                "Parámetro": "Mantenimiento, Directo, Toxina",
+                "Coste": "3xNH"
+            },
+            {
+                "Efecto": "Visión en la Oscuridad",
+                "Regla": "El objetivo puede ver en la oscuridad con un rango de 10xNH metros por un minuto",
+                "Parámetro": "Mantenimiento, Poción",
+                "Coste": "3xNH"
+            }
+        ],
+        "misticismo": [
+            {
+                "Efecto": "Absorción de Hechizo",
+                "Regla": "Por una ronda, el objetivo absorbe una parte de la magia dirigida a él para alimentar sus propias reservas de Magicka. Siempre que la magia de cualquier tipo le afecte, tira un d10. Si el valor es menor o igual a NH, la magia no tiene efecto sobre él y, en su lugar, recuperan la magia faltante hasta el costo de la magia.",
+                "Parámetro": "Mantenimiento, Poción, Directo",
+                "Coste": "3xNH"
+            },
+            {
+                "Efecto": "Absorber Magicka",
+                "Regla": "El objetivo pierde 3d10 puntos de Magicka. El lanzador recupera Magicka igual a la pérdida por el objetivo.",
+                "Parámetro": "Directo",
+                "Coste": "21"
+            },
+            {
+                "Efecto": "Absorber Vida",
+                "Regla": "El objetivo afectado recibe (dado) daño mágico. El lanzador regenera Salud igual a la mitad (redondeando hacia arriba) del daño infligido. Nota: El NH determina el tamaño del dado utilizado, comenzando con 1d4 y aumentando un tamaño para cada NH más allá del primero (1d6, 1d8, 1d10, 2d6, 2d8, 2d10, 3d8, 3d10, 4d8).",
+                "Parámetro": "Sobrecarga (daño)",
+                "Coste": "3xNH"
+            },
+            {
+                "Efecto": "Detectar (Tipo)",
+                "Regla": "El objetivo afectado obtiene la capacidad de ver objetos/efectos del [tipo] elegido dentro de 10 x NH metros como un contorno tenue y brillante incluso en la oscuridad y a través de objetos, incluso si está ciego, durante 1 minuto. [Vida, Magia, No muerto, (otros)],",
+                "Parámetro": "Mantenimiento, Poción",
+                "Coste": "5xNH"
+            },
+            {
+                "Efecto": "Disipar",
+                "Regla": "Elimina del objetivo todos los efectos mágicos de nivel NH (ya sea poción, hechizo o encantamiento) o inferior. Los encantamientos constantes se reactivan después de 1d4 asaltos.",
+                "Parámetro": "Poción",
+                "Coste": "4xNH"
+            },
+            {
+                "Efecto": "Forma Etérea",
+                "Regla": "El objetivo se vuelve incorpóreo por una ronda.",
+                "Parámetro": "Mantenimiento, Poción",
+                "Coste": "10"
+            },
+            {
+                "Efecto": "Marca",
+                "Regla": "Coloca una marca mágica e invisible en la ubicación actual del objetivo afectado.",
+                "Parámetro": "Poción",
+                "Coste": "5"
+            },
+            {
+                "Efecto": "Reflejo",
+                "Regla": "Cada vez que el objetivo sea golpeado por un hechizo, tira un d10. Si el resultado es una tirada de NH o inferior, resuelve el hechizo contra su lanzador original. Dura 1 ronda.",
+                "Parámetro": "Directo, Poción, Mantenimiento",
+                "Coste": "3xNH"
+            },
+            {
+                "Efecto": "Retirada",
+                "Regla": "Transporta instantáneamente al objetivo dispuesto a la ubicación de una de las marcas mágicas del lanzador colocadas con el hechizo Marca",
+                "Parámetro": "Poción",
+                "Coste": "15"
+            },
+            {
+                "Efecto": "Trampa de Alma",
+                "Regla": "El objetivo afectado tiene su alma atada mágicamente a una gema de alma vacía apropiada a elección del lanzador dentro de 1 m del lanzador. Si el objetivo muere dentro de 1 minuto, entonces su alma queda atrapada dentro de la gema.",
+                "Parámetro": "",
+                "Coste": "Este efecto siempre cuenta como nivel 2."
+            }
+        ],
+        "restauracion": [
+            {
+                "Efecto": "Curar",
+                "Regla": "El objetivo recupera 2xNH de Salud",
+                "Parámetro": "Directo, Poción",
+                "Coste": "2xNH"
+            },
+            {
+                "Efecto": "Curar Enfermedad",
+                "Regla": "Remueve las enfermedades del objetivo. Nota: Este efecto siempre cuenta como nivel 2",
+                "Parámetro": "Directo, Poción",
+                "Coste": "7"
+            },
+            {
+                "Efecto": "Curar Parálisis",
+                "Regla": "Remueve los efectos de parálisis de un objetivo. Nota: Este efecto siempre cuenta como nivel 2",
+                "Parámetro": "Directo, Poción",
+                "Coste": "8"
+            },
+            {
+                "Efecto": "Debilidad a la Magia",
+                "Regla": "El objetivo toma NH puntos adicionales de daño en ataques mágicos por una ronda.",
+                "Parámetro": "Directo, Toxina",
+                "Coste": "3xNH"
+            },
+            {
+                "Efecto": "Debilidad Elemental",
+                "Regla": "El objetivo toma NH puntos adicionales de daño en ataques de (tipo) por una ronda.",
+                "Parámetro": "Directo, Toxina, [Fuego, Hielo, Electricidad, Veneno]",
+                "Coste": "1xNH"
+            },
+            {
+                "Efecto": "Drenar (Tipo)",
+                "Regla": "Inflige una penalización NH a toda tirada del objetivo usando ese Atributo, y una bonificación NH a todos los lanzadores que prueban con ese Atributo durante una ronda.",
+                "Parámetro": "Directo, Mantenimiento, [Fuerza, Agilidad, Constitución, Inteligencia, Voluntad, Personalidad]",
+                "Coste": "8xNH"
+            },
+            {
+                "Efecto": "Drenar Magicka",
+                "Regla": "El objetivo pierde 4xNH puntos de Magicka.",
+                "Parámetro": "Directo, Mantenimiento, Toxina",
+                "Coste": "(4xNH)+2"
+            },
+            {
+                "Efecto": "Estabilizar",
+                "Regla": "Estabiliza al objetivo, removiendo su condición de Moribundo. Nota: Este efecto siempre cuenta como nivel 1.",
+                "Parámetro": "Directo",
+                "Coste": "1"
+            },
+            {
+                "Efecto": "Expulsar No Muerto",
+                "Regla": "El no-muerto objetivo debe hacer una prueba de Voluntad con un modificador NH para no huir inmediatamente del lanzador durante 1 ronda.",
+                "Parámetro": "Mantenimiento",
+                "Coste": "3xNH"
+            },
+            {
+                "Efecto": "Fatiga",
+                "Regla": "El objetivo pierde NH puntos de Aguante. Si su Aguante llega a 0, gana un nivel de Agotamiento.",
+                "Parámetro": "Directo",
+                "Coste": "(4xNH)+2"
+            },
+            {
+                "Efecto": "Fortificar (Atributo)",
+                "Regla": "El lanzador aumenta su puntuación de [tipo] en NH durante 1 ronda. Esto afecta a todas las características derivadas de ese Atributo.",
+                "Parámetro": "Mantenimiento, Poción, [Fuerza, Agilidad, Constitución, Inteligencia, Voluntad, Personalidad]",
+                "Coste": "8xNH"
+            },
+            {
+                "Efecto": "Rejuvenecer",
+                "Regla": "El objetivo remueve un nivel de Agotamiento. Si no tiene ninguno, gana un punto de Aguante. Nota: Este efecto siempre cuenta como nivel 3",
+                "Parámetro": "Poción",
+                "Coste": "25"
+            },
+            {
+                "Efecto": "Reponer",
+                "Regla": "El objetivo recupera 2xNH puntos de Magicka",
+                "Parámetro": "Poción",
+                "Coste": "3xNH"
+            },
+            {
+                "Efecto": "Resistencia a la Magia",
+                "Regla": "El objetivo toma NH puntos menos de daño en ataques mágicos por una ronda.",
+                "Parámetro": "Mantenimiento, Poción",
+                "Coste": "4xNH"
+            },
+            {
+                "Efecto": "Resistencia Elemental",
+                "Regla": "El objetivo toma NH puntos menos de daño en ataques de ese tipo por una ronda",
+                "Parámetro": "Mantenimiento, Poción, [Fuego, Hielo, Electricidad, Veneno]",
+                "Coste": "2xNH"
+            }
+        ]
+    }
+}

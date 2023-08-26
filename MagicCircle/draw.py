@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import os
 
-n = 11
+n = 0
 
 def add_edges(G: nx.Graph, conn: int):
     for i in range(n):
@@ -97,14 +97,23 @@ def draw(level, school, dmg_type, area_type, range_, radius, graph_type, node_la
     G = nx.Graph()
     G.add_nodes_from([x+1 for x in range(n)])
 
-    graph(G, props_to_mat(level=level, school=school, dmg_type=dmg_type, area_type=area_type, range_=range_))
+    graph_matrix = props_to_mat(level=level, school=school, dmg_type=dmg_type, area_type=area_type, range_=range_)
+    graph(G, graph_matrix)
+
+    # Encontrar nodos aislados
+    isolated_nodes = list(nx.isolates(G))
+
+    # Eliminar nodos aislados del grafo
+    G.remove_nodes_from(isolated_nodes)
 
     plt.figure()
     plt.axis("off")
+
     if edge_color:
         edge_color = [edge_color_func(n1, n2) for n1, n2 in G.edges()]
     else:
         edge_color = ["black" for _ in G.edges()]
+    
     if graph_type == "circular":
         pos = nx.circular_layout(G)
     elif graph_type == "kamada_kawai":
@@ -120,8 +129,10 @@ def draw(level, school, dmg_type, area_type, range_, radius, graph_type, node_la
     else:
         pos = nx.circular_layout(G)
     pos = {n: pos[n] for n in sorted(G.nodes(), key=lambda n: n)}
+    
     nx.draw(G, node_color="black", edge_color=edge_color, width=1, with_labels=node_label, font_color="white", pos=pos, arrows=True, connectionstyle=f"arc3,rad={radius}",
             node_size=node_size)
+    
     MODULE_DIR = os.path.dirname(os.path.abspath(__file__))
     if os.path.exists(os.path.join(MODULE_DIR, "fig.png")):
         os.remove(os.path.join(MODULE_DIR, "fig.png"))

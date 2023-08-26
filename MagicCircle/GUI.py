@@ -1,11 +1,28 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import *
-
+import json
 import draw
 import os
 
 MODULE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
+with open(os.path.join(MODULE_DIR, "settings.json"), "r") as f:
+    settings:dict = json.load(f)
+    lvl_nodes = 1 if settings.get("max_lvl") else 0
+    form_nodes = len(settings.get("forms")) if settings.get("forms") else 0
+    effects = 0
+    for school in settings.get("effects").keys():
+        print(school, len(settings.get("effects").get(school)))
+        if len(settings.get("effects").get(school)) > effects:
+            effects = (len(settings.get("effects").get(school)))
+    
+    # n is the highest number of nodes that the graph can have
+    n = lvl_nodes if (lvl_nodes > form_nodes) else (form_nodes if (form_nodes > effects) else effects)
+    draw.n = n
+    print(f"lvl_nodes: {lvl_nodes}, form_nodes: {form_nodes}, effects: {effects}, n: {n}")
+
 
 root = tk.Tk()
 root.minsize(400, 500)
