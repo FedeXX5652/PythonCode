@@ -91,86 +91,86 @@
             {
                 "Efecto": "Abrir",
                 "Regla": "-",
-                "Parámetro": "3xNH",
-                "Coste": ""
+                "Parámetro": "",
+                "Coste": "3xNH"
             },
             {
                 "Efecto": "Armadura",
                 "Regla": "Mantenimiento, Poción, Guardia (Armadura)",
-                "Parámetro": "5xNH",
-                "Coste": ""
+                "Parámetro": "",
+                "Coste": "5xNH"
             },
             {
                 "Efecto": "Caída Lenta",
                 "Regla": "Mantenimiento, Reacción, Poción",
-                "Parámetro": "NH",
-                "Coste": ""
+                "Parámetro": "",
+                "Coste": "NH"
             },
             {
                 "Efecto": "Caminar Sobre el Agua",
                 "Regla": "Poción",
-                "Parámetro": "NH",
-                "Coste": ""
+                "Parámetro": "",
+                "Coste": "NH"
             },
             {
                 "Efecto": "Carga",
                 "Regla": "Mantenimiento, Toxina",
-                "Parámetro": "3xNH",
-                "Coste": ""
+                "Parámetro": "",
+                "Coste": "3xNH"
             },
             {
                 "Efecto": "Cerrar",
                 "Regla": "-",
-                "Parámetro": "3xNH",
-                "Coste": ""
+                "Parámetro": "",
+                "Coste": "3xNH"
             },
             {
                 "Efecto": "Custodia",
                 "Regla": "Reacción",
-                "Parámetro": "2xNH",
-                "Coste": ""
+                "Parámetro": "",
+                "Coste": "2xNH"
             },
             {
                 "Efecto": "Escudo",
                 "Regla": "Mantenimiento, Poción, Guardia (Salud)",
-                "Parámetro": "3xNH",
-                "Coste": ""
+                "Parámetro": "",
+                "Coste": "3xNH"
             },
             {
                 "Efecto": "Levitar",
                 "Regla": "Mantenimiento, Poción",
-                "Parámetro": "6xNH",
-                "Coste": ""
+                "Parámetro": "",
+                "Coste": "6xNH"
             },
             {
                 "Efecto": "Pluma",
                 "Regla": "Mantenimiento, Poción",
-                "Parámetro": "10",
-                "Coste": ""
+                "Parámetro": "",
+                "Coste": "10"
             },
             {
                 "Efecto": "Unir/Reparar",
                 "Regla": "Mantenimiento",
-                "Parámetro": "2xNH",
-                "Coste": ""
+                "Parámetro": "",
+                "Coste": "2xNH"
             },
             {
                 "Efecto": "Respirar Bajo el Agua",
                 "Regla": "Poción",
-                "Parámetro": "NH",
-                "Coste": ""
+                "Parámetro": "",
+                "Coste": "NH"
             },
             {
                 "Efecto": "Salto",
                 "Regla": "Poción",
-                "Parámetro": "NH",
-                "Coste": ""
+                "Parámetro": "",
+                "Coste": "NH"
             },
             {
                 "Efecto": "Telekinesis",
                 "Regla": "Mantenimiento, Poción",
-                "Parámetro": "3xNH",
-                "Coste": ""
+                "Parámetro": "",
+                "Coste": "3xNH"
             }
         ],
         "conjuracion": [],
